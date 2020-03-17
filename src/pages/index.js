@@ -1,21 +1,50 @@
-import React from "react"
-import { Link } from "gatsby"
+import React, { useState } from "react"
+import cx from 'classnames';
+import guesswho from "../images/guesswho.jpg"
+import "./index.css"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
+const Card = ({ flipped, handleOnClick }) => (
+  <div className={cx("card", { flipped })} onClick={handleOnClick} />
 )
+
+const IndexPage = () => {
+  const [flipped, setFlipped] = useState({});
+  return (
+    <Layout>
+      <SEO title="Home" />
+      <div className="board">
+        <img className="boardImage" src={guesswho} />
+        <div className="cards">
+          {[...Array(3).keys()].map(i => (
+            <div className="row" key={i}>
+              {[...Array(8).keys()].map(n => {
+                const key = `${i}${n}`
+                const isCardFlipped = flipped[key]
+                return (
+                  <Card
+                    key={key}
+                    handleOnClick={() =>
+                      setFlipped({
+                        ...flipped,
+                        [key]: isCardFlipped ? !isCardFlipped : true,
+                      })
+                    }
+                    flipped={isCardFlipped}
+                  />
+                )
+              })}
+            </div>
+          ))}
+        </div>
+        <button id="clear" onClick={() => setFlipped({})}>
+          Borrar
+        </button>
+      </div>
+    </Layout>
+  )
+}
 
 export default IndexPage

@@ -1,0 +1,52 @@
+body {
+  padding-bottom: 60px;
+}
+
+.board {
+  width: 1000px;
+  height: 640px;
+  margin-bottom: 60px;
+  position: relative;
+  margin: 0 auto
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+.cards {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.row {
+  display: flex;
+  margin-top: 5px;
+  margin-left: 10px;
+  height: 32%;
+}
+
+.card {
+  background-color: none;
+  border: transparent solid 3px;
+  opacity: 0.9;
+  height: 100%;
+  width: 12.4%;
+}
+
+.card.flipped {
+  background-color: #FFC929;
+}
+
+#clear {
+  height: 2em;
+  width: 1000px;
+  background-color: #FFC929;
+  font-weight: bold;
+  font-size: 16px;
+  color: white;
+  margin-top: 1em;
+}
